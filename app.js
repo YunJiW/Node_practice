@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 app.use(express.json());
 
@@ -18,7 +18,7 @@ app.post("/todos",(req, res) =>{
 
     if(!title){
         return res.status(400).json({ message: "Title is required!"});
-    }
+    }``
 
     const newTodo = {
         id: Date.now(),
