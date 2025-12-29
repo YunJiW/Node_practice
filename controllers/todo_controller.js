@@ -1,13 +1,19 @@
+const todoService = require('../services/todo_service');
 
-let todos = [
-    {
-        id: 1, title : "Study Node.js", done :false
-    },
-    {
-        id: 2, title : "Learn Express", done : false
-    }
-];
 
 exports.getTodos = (req, res) => {
+    const todos = todoService.getTodos();
     res.json(todos);
 };
+
+exports.createTodo = (req,res) => {
+    const {title} = req.body;
+
+    if(!title){
+        return res.status(400).json({message : "Title is required!"});
+    }
+
+    const todo = todoService.createTodo(title);
+    res.status(201).json(todo);
+};
+
