@@ -1,23 +1,18 @@
-
-let todos = [
-    {
-        id: 1, title : "Study Node.js", done :false
-    },
-    {
-        id: 2, title : "Learn Express", done : false
-    }
-];
+const db = require('../db/sqlite');
 
 exports.getTodos = () => {
-    return todos;
+  return db.prepare('SELECT * FROM todos').all();
 };
 
 exports.createTodo = (title) => {
-    const newTodo = {
-        id: Date.now(),
+    const stmt = db.prepare('INSERT INTO todos (title) VALUES (?)');
+
+
+const result = stmt.run(title);
+
+    return {
+        id : result.lastInsertRowid,
         title,
-        done: false
+        done: 0
     };
-    todos.push(newTodo);
-    return newTodo;
 };
