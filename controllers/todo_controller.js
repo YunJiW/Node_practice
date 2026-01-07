@@ -42,4 +42,3 @@ exports.deleteTodo = (req,res) => {
 
     res.json({ message : 'Todo deleted successfully !!',todo});
 };
-
